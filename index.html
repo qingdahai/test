@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机系统</title>
+</head>
+
+<body>
+    <script>
+
+        let a = ["张三", "呸", "李四", "王五", "好玩", "愚蠢的梁东", "多么的闪", "梁东", "小黄鹂", "跑步", "截个图", "电压", "李政军", "红星闪闪", "愚蠢的政军", "五五二百五", "批量导入", "李宇春", "新加坡", "俄罗斯", "中国", "日本", "韩国", "中子", "刘德华", "地球", "篮球", "火山", "地震了", "五一广场", "四川", "北京", "重庆", "岳池县", "五花马", "洗发水", "演习", "因为", "牛顿", "作家", "王家坪", "临溪", "超文本", "开发", "鼠标", "显示器", "千万", "装修", "四舍五入", "校园", "玻璃", "眼睛", "手表", "桂花茶", "科技", "物理层", "蓝月亮", "德邦快递", "当时", "洁柔", "蛇皮", "啊哈", "万里挑一", "李商隐", "五言律诗", "美酒", "乌克兰", "李白", "放上面吧", "什么都有", "乱七八糟", "天哪", "火炬", "中奖啦", "是吗", "好的", "所有", "电子日历", "没有中奖", "五百万", "消愁", "吴莫愁", "小龙女", "啥也没有", "看吧", "有病", "报错了", "改BUG", "没BUG", "风萧萧兮", "不行", "执行一个", "不要写英文", "华夏文明", "工牌", "水杯", "书包", "一年级", "毕业啦", "扁担宽", "土豪啊", "紧急出口", "绿地", "公交站", "生化武器", "美国佬", "不求人", "手冷了", "来自上海", "合并", "新闻中心", "白纸黑字", "或者", "四个数据", "接口", "抖音", "农业银行", "穷", "哈利波特", "下午", "太平洋", "美羊羊", "小明", "全部", "单独", "比如说", "满了", "红尘作伴", "灰太狼", "饭盒", "落地成盒", "团团", "饿了么", "海面上", "最新的版本", "之后", "语言的艺术", "快乐星球", "垃圾桶", "绿色的笔", "齿轮", "草履虫", "考虑", "频繁", "朴树", "谷歌浏览器", "通用", "下班啦", "期待暑假", "看雪", "韩红", "武则天", "思维跳跃", "汽车", "简单点", "滑铁卢", "智能识别", "焖烂了", "打卡机", "支付", "百步穿杨", "沙漠", "灯笼", "钉钉", "电脑", "封条", "成功", "电视一直闪", "锄禾日当午", "黄雅莉", "这里有人名", "离散数学", "人民的名义", "刘星", "水分子", "氖气", "氡气", "无聊", "开学啦", "九妹", "咳嗽", "泰和园", "吉他", "国际象棋", "向日葵", "罗马帝国", "泰语", "大树", "爸爸去哪儿", "梵高", "孔明灯", "林正英", "我们的爱", "白细胞", "阿莫西林", "餐券", "二维码", "好像一句话", "这里有红花", "到此一游", "孙中山", "花岗岩", "青花瓷", "中和豆花", "邓小平", "叫花鸡", "我来了", "下雨了", "再别康桥", "等爱的玫瑰", "写了很多词", "想哭", "造句", "晚安", "周杰伦", "天宫一号", "发射", "皮鞋", "请展示", "天府广场", "红太阳", "没有", "微微一笑", "华为", "报告", "孙行者", "茶叶蛋", "菜鸟驿站", "红旗", "刘邦", "应用商店", "美丽的误会", "武汉", "脾气", "光雾山", "磁器口", "月老", "白豆腐", "三角函数", "科技", "王心凌", "黄色的纸", "勾股定理", "心跳", "国足", "镇定", "海底世界", "黑客", "沙发", "石墨", "楼主", "使用须知", "回家吧", "萤火虫", "结果", "密码", "爪子哦", "空格", "无限流量", "蓝牙耳机", "还有吗", "悄悄变强大", "只有", "食堂", "配一个", "不用写", "直接", "在哪里创建", "小米手机", "天上的星星", "春眠不觉晓", "你在我眼中", "最美", "发福", "五千年", "洁柔", "滚动条", "自动步枪", "纯品", "贪吃蛇", "抽屉", "走啊", "吃饭吧", "睡一会吧", "铁路十八局", "又有几个问题", "微波炉打饭"]
+        let keyCode = [32, 66, 68, 37, 38, 39, 40]
+        // console.log(a)
+        let i = 0
+        render()
+        let timer_num = 1
+        let timer;
+        timerStart(timer_num)
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        })
+
+        //禁止选中文字 selectstart
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        })
+
+        document.addEventListener("mousedown", (e) => {
+            if (e.button == 0) {
+                render(5, false)
+            } else if (e.button == 1) {
+
+            } else if (e.button == 2) {
+                render(14, false)
+            }
+            clearInterval(timer)
+        });
+
+        document.addEventListener("mouseup", (e) => {
+            clearInterval(timer)
+            timerStart(timer_num)
+        });
+
+        document.addEventListener("keydown", (e) => {
+            console.log(e.keyCode)
+            if (isAinBC(e.keyCode, 65, 90) || isAinBC(e.keyCode, 37, 40) || isAinBC(e.keyCode, 31, 33, false)) {
+                clearInterval(timer)
+                if (e.keyCode == 65 || e.keyCode == 66) {
+                    render(5, false)
+                } else if (e.keyCode == 67 || e.keyCode == 68) {
+                    render(14, false)
+                } else if (keyCode.indexOf(e.keyCode) > -1) {
+                    render()
+                }
+            }
+        });
+
+        document.addEventListener("keyup", (e) => {
+            if (isAinBC(e.keyCode, 65, 90) || isAinBC(e.keyCode, 37, 40) || isAinBC(e.keyCode, 31, 33, false)) {
+                clearInterval(timer)
+                if (keyCode.indexOf(e.keyCode) == -1) {
+                    timerStart(timer_num)
+                }
+            }
+        });
+
+        function timerStart(t = 50) {
+            timer = setInterval(() => {
+                i++
+                i == a.length ? i = 0 : ""
+                render()
+            }, t);
+        }
+
+        function render(i, bg = true) {
+            // let fs = abRandom(20, 75)
+            let fs = 16
+            document.body.style["display"] = `flex`
+            document.body.style["align-items"] = `center`
+            document.body.style["justify-content"] = `center`
+            // document.body.style["width"] = `100%`
+            document.body.style["height"] = `98vh`
+            document.body.style["font-size"] = `${fs}vh`
+            // document.body.style.background = `rgb(${r},${g},${b})` 
+
+            let ci = a[typeof i == "number" ? i : abRandom(0, a.length - 1)].split("")
+
+            ci = ci.map(item => {
+                let r = abRandom(0, 255)
+                let g = abRandom(0, 255)
+                let b = abRandom(0, 255)
+                if (bg) document.body.style["background-image"] = `linear-gradient(${abRandom(0, 360)}deg,rgb(${r},${g},${b}),rgb(${b},${r},${g}))`
+                return `<a style="background-image:-webkit-linear-gradient(${abRandom(0, 360)}deg,rgb(${b},${r},${g}),rgb(${r},${g},${b})); -webkit-background-clip:text; -webkit-text-fill-color:transparent; ">${item}</a>`
+            });
+
+            document.body.innerHTML = ci.join("")
+            // console.log(document.body.innerHTML)
+        }
+
+        function abRandom(a = 0, b = 1) {
+            return Math.round(Math.random() * (b - a)) + a;
+        }
+
+        function isAinBC(a = 0, b = 1, c = 2, aIn = true) {
+            return aIn ? b <= a && a <= c : b < a && a < c;
+        }
+
+
+        // let a = ["张三", "呸", "李四", "王五", "好玩", "愚蠢的梁东", "多么的闪", "梁东", "小黄鹂", "跑步", "截个图", "电压", "李政军", "红星闪闪", "愚蠢的政军", "五五二百五", "批量导入", "李宇春", "新加坡", "俄罗斯", "中国", "日本", "韩国", "中子", "刘德华", "地球", "篮球", "火山", "地震了", "五一广场", "四川", "北京", "重庆", "岳池县", "五花马", "洗发水", "演习", "因为", "牛顿", "作家", "王家坪", "临溪", "超文本", "开发", "鼠标", "显示器", "千万", "装修", "四舍五入", "校园", "玻璃", "眼睛", "手表", "桂花茶", "科技", "物理层", "蓝月亮", "德邦快递", "当时", "洁柔", "蛇皮", "啊哈", "万里挑一", "李商隐", "五言律诗", "美酒", "乌克兰", "李白", "放上面吧", "什么都有", "乱七八糟", "天哪", "火炬", "中奖啦", "是吗", "好的", "所有", "电子日历", "没有中奖", "五百万", "消愁", "吴莫愁", "小龙女", "啥也没有", "看吧", "有病", "报错了", "改BUG", "没BUG", "风萧萧兮", "不行", "执行一个", "不要写英文", "华夏文明", "工牌", "水杯", "书包", "一年级", "毕业啦", "扁担宽", "土豪啊", "紧急出口", "绿地", "公交站", "生化武器", "美国佬", "不求人", "手冷了", "来自上海", "合并", "新闻中心", "白纸黑字", "或者", "四个数据", "接口", "抖音", "农业银行", "穷", "哈利波特", "下午", "太平洋", "美羊羊", "小明", "全部", "单独", "比如说", "满了", "红尘作伴", "灰太狼", "饭盒", "落地成盒", "团团", "饿了么", "海面上", "最新的版本", "之后", "语言的艺术", "快乐星球", "垃圾桶", "绿色的笔", "齿轮", "草履虫", "考虑", "频繁", "朴树", "谷歌浏览器", "通用", "下班啦", "期待暑假", "看雪", "韩红", "武则天", "思维跳跃", "汽车", "简单点", "滑铁卢", "智能识别", "焖烂了", "打卡机", "支付", "百步穿杨", "沙漠", "灯笼", "钉钉", "电脑", "封条", "成功", "电视一直闪", "锄禾日当午", "黄雅莉", "这里有人名", "离散数学", "人民的名义", "刘星", "水分子", "氖气", "氡气", "无聊", "开学啦", "九妹", "咳嗽", "泰和园", "吉他", "国际象棋", "向日葵", "罗马帝国", "泰语", "大树", "爸爸去哪儿", "梵高", "孔明灯", "林正英", "我们的爱", "白细胞", "阿莫西林", "餐券", "二维码", "好像一句话", "这里有红花", "到此一游", "孙中山", "花岗岩", "青花瓷", "中和豆花", "邓小平", "叫花鸡", "我来了", "下雨了", "再别康桥", "等爱的玫瑰", "写了很多词", "想哭", "造句", "晚安", "周杰伦", "天宫一号", "发射", "皮鞋", "请展示", "天府广场", "红太阳", "没有", "微微一笑", "华为", "报告", "孙行者", "茶叶蛋", "菜鸟驿站", "红旗", "刘邦", "应用商店", "美丽的误会", "武汉", "脾气", "光雾山", "磁器口", "月老", "白豆腐", "三角函数", "科技", "王心凌", "黄色的纸", "勾股定理", "心跳", "国足", "镇定", "海底世界", "黑客", "沙发", "石墨", "楼主", "使用须知", "回家吧", "萤火虫", "结果", "密码", "爪子哦", "空格", "无限流量", "蓝牙耳机", "还有吗", "悄悄变强大"]
+        // // console.log(a)
+        // let i = 0
+        // render()
+        // let timer_num = 1
+        // let timer;
+        // let autoTimerStart = null
+        // let autoTimerEnd = null
+        // timerStart(timer_num)
+
+
+        // document.addEventListener("mousedown", () => {
+        //     clearInterval(timer)
+        // });
+
+        // document.addEventListener("mouseup", () => {
+        //     timerStart(timer_num)
+        // });
+
+        // document.addEventListener("keydown", (e) => {
+        //     if (e.keyCode == 32) {
+        //         clearInterval(timer)
+        //     }
+        //     e.stopPropagation()
+        //     return
+        // });
+
+        // document.addEventListener("keyup", (e) => {
+        //     if (e.keyCode == 32) {
+        //         timerStart(timer_num)
+        //     }
+        //     e.stopPropagation()
+        //     return
+        // });
+
+        // function timerStart(t = 50) {
+        //     timer = setInterval(() => {
+        //         i++
+        //         i == a.length ? i = 0 : ""
+        //         render()
+        //     }, t);
+        //     // autoTimerStart = 1
+        //     // console.log("timer", timer)
+        // }
+
+        // // autoRest()
+        // // function autoRest() {
+        // //     let auto_start = abRandom(200, 1000)
+        // //     clearTimeout(autoTimerStart)
+        // //     autoTimerStart = setTimeout(() => {
+        // //         clearInterval(timer)
+        // //         let auto_end = abRandom(200, 1000)
+        // //         autoTimerEnd = setTimeout(() => {
+        // //             timerStart(timer_num)
+        // //             clearTimeout(autoTimerEnd)
+        // //             autoRest()
+        // //         }, auto_end)
+        // //     }, auto_start)
+        // // }
+
+        // function render(i) {
+        //     let r = abRandom(0, 255)
+        //     let g = abRandom(0, 255)
+        //     let b = abRandom(0, 255)
+        //     // let fs = abRandom(20, 75)
+        //     let fs = 2
+        //     // let fs = 10
+        //     document.body.style["display"] = `flex`
+        //     // document.body.style["align-items"] = `center`
+        //     // document.body.style["justify-content"] = `center`
+        //     // document.body.style["width"] = `100%`
+        //     // document.body.style["height"] = `98vh`
+        //     document.body.style["font-size"] = `${fs}vh`
+        //     // document.body.style["color"] = `rgb(${g},${b},${r})`
+        //     document.body.style["color"] = `rgb(76,163,14)`
+        //     document.body.style["overflow"] = `auto`
+        //     document.body.style["box-sizing"] = `border-box`
+        //     document.body.style["padding"] = `20px 0`
+        //     document.body.style["flex-wrap"] = `wrap`
+        //     // document.body.style["opacity"] = `${abRandom(0, 0.9)}`
+        //     // document.body.style.background = `rgb(${r},${g},${b})`
+        //     // document.body.innerHTML = a[typeof i == "number" ? i : abRandom(0, a.length - 1)]
+        //     // console.log(document.body.innerHTML)
+        //     let span = document.createElement("span")
+        //     span.innerHTML = a[typeof i == "number" ? i : abRandom(0, a.length - 1)]
+        //     span.style["opacity"] = `${Math.random().toFixed(2)}`
+        //     document.body.appendChild(span)
+        //     document.body.style.background = `rgb(0,0,0)`
+
+        //     document.getElementsByTagName("html")[0].scrollTop = document.body.offsetHeight;
+
+        //     // document.write("<br/>")
+        // }
+
+        // function abRandom(a = 0, b = 1) {
+        //     return Math.round(Math.random() * (b - a)) + a;
+        // }
+
+        // let a = ["张三", "呸", "李四", "王五", "好玩", "愚蠢的梁东", "多么的闪", "梁东", "小黄鹂", "跑步", "截个图", "电压", "李政军", "红星闪闪", "愚蠢的政军", "五五二百五", "批量导入", "李宇春", "新加坡", "俄罗斯", "中国", "日本", "韩国", "中子", "刘德华", "地球", "篮球", "火山", "地震了", "五一广场", "四川", "北京", "重庆", "岳池县", "五花马", "洗发水", "演习", "因为", "牛顿", "作家", "王家坪", "临溪", "超文本", "开发", "鼠标", "显示器", "千万", "装修", "四舍五入", "校园", "玻璃", "眼睛", "手表", "桂花茶", "科技", "物理层", "蓝月亮", "德邦快递", "当时", "洁柔", "蛇皮", "啊哈", "万里挑一", "李商隐", "五言律诗", "美酒", "乌克兰", "李白", "放上面吧", "什么都有", "乱七八糟", "天哪", "火炬", "中奖啦", "是吗", "好的", "所有", "电子日历", "没有中奖", "五百万", "消愁", "吴莫愁", "小龙女", "啥也没有", "看吧", "有病", "报错了", "改BUG", "没BUG", "风萧萧兮", "不行", "执行一个", "不要写英文", "华夏文明", "工牌", "水杯", "书包", "一年级", "毕业啦", "扁担宽", "土豪啊", "紧急出口", "绿地", "公交站", "生化武器", "美国佬", "不求人", "手冷了", "来自上海", "合并", "新闻中心", "白纸黑字", "或者", "四个数据", "接口", "抖音", "农业银行", "穷", "哈利波特", "下午", "太平洋", "美羊羊", "小明", "全部", "单独", "比如说", "满了", "红尘作伴", "灰太狼", "饭盒", "落地成盒", "团团", "饿了么", "海面上", "最新的版本", "之后", "语言的艺术", "快乐星球", "垃圾桶", "绿色的笔", "齿轮", "草履虫", "考虑", "频繁", "朴树", "谷歌浏览器", "通用", "下班啦", "期待暑假", "看雪", "韩红", "武则天", "思维跳跃", "汽车", "简单点", "滑铁卢", "智能识别", "焖烂了", "打卡机", "支付", "百步穿杨", "沙漠", "灯笼", "钉钉", "电脑", "封条", "成功", "电视一直闪", "锄禾日当午", "黄雅莉", "这里有人名", "离散数学", "人民的名义", "刘星", "水分子", "氖气", "氡气", "无聊", "开学啦", "九妹", "咳嗽", "泰和园", "吉他", "国际象棋", "向日葵", "罗马帝国", "泰语", "大树", "爸爸去哪儿", "梵高", "孔明灯", "林正英", "我们的爱", "白细胞", "阿莫西林", "餐券", "二维码", "好像一句话", "这里有红花", "到此一游", "孙中山", "花岗岩", "青花瓷", "中和豆花", "邓小平", "叫花鸡", "我来了", "下雨了", "再别康桥", "等爱的玫瑰", "写了很多词", "想哭", "造句", "晚安", "周杰伦", "天宫一号", "发射", "皮鞋", "请展示", "天府广场", "红太阳", "没有", "微微一笑", "华为", "报告", "孙行者", "茶叶蛋", "菜鸟驿站", "红旗", "刘邦", "应用商店", "美丽的误会", "武汉", "脾气", "光雾山", "磁器口", "月老", "白豆腐", "三角函数", "科技", "王心凌", "黄色的纸", "勾股定理", "心跳", "国足", "镇定", "海底世界", "黑客", "沙发", "石墨", "楼主", "使用须知", "回家吧", "萤火虫", "结果", "密码", "爪子哦", "空格", "无限流量", "蓝牙耳机", "还有吗", "悄悄变强大"]
+        // // console.log(a)
+        // let i = 0
+        // render()
+        // let timer_num = 1
+        // let timer;
+        // timerStart(timer_num)
+
+
+        // document.addEventListener("mousedown", () => {
+        //     clearInterval(timer)
+        // });
+
+        // document.addEventListener("mouseup", () => {
+        //     timerStart(timer_num)
+        // });
+
+        // document.addEventListener("keydown", (e) => {
+        //     if (e.keyCode == 32) {
+        //         clearInterval(timer)
+        //     }
+        // });
+
+        // document.addEventListener("keyup", (e) => {
+        //     if (e.keyCode == 32) {
+        //         timerStart(timer_num)
+        //     }
+        // });
+
+        // function timerStart(t = 50) {
+        //     timer = setInterval(() => {
+        //         i++
+        //         i == a.length ? i = 0 : ""
+        //         render()
+        //     }, t);
+
+        //     console.log("timer", timer)
+        // }
+
+        // function render(i) {
+        //     let r = abRandom(0, 255)
+        //     let g = abRandom(0, 255)
+        //     let b = abRandom(0, 255)
+        //     // let fs = abRandom(20, 75)
+        //     let fs = 16
+        //     document.body.style["display"] = `flex`
+        //     document.body.style["align-items"] = `center`
+        //     document.body.style["justify-content"] = `center`
+        //     // document.body.style["width"] = `100%`
+        //     document.body.style["height"] = `98vh`
+        //     document.body.style["font-size"] = `${fs}vh`
+        //     document.body.style["color"] = `rgb(${g},${b},${r})`
+        //     // document.body.style.background = `rgb(${r},${g},${b})`
+        //     document.body.innerHTML = a[typeof i == "number" ? i : abRandom(0, a.length - 1)]
+        //     console.log(document.body.innerHTML)
+        // }
+
+        // function abRandom(a = 0, b = 1) {
+        //     return Math.round(Math.random() * (b - a)) + a;
+        // }
+
+
+       // let a = [1, 2, 3, 4, 5, 6, 7, 8, 2, 2, 3, 4, 5, 6, 7, 8, 3, 2, 3, 4, 5, 6, 7, 8, 4, 2, 3, 4, 5, 6, 7, 8, 5, 2, 3, 4, 5, 6, 7, 8, 6, 2, 3, 4, 5, 6, 7, 8, 7, 2, 3, 4, 5, 6, 7, 8, 8, 2, 3, 4, 5, 6, 7, 8]
+        // let i = 0
+        // render(i)
+        // let timer_num = 50
+        // let timer = setInterval(() => {
+        //     i++
+        //     i == a.length ? i = 0 : ""
+        //     render(i)
+        // }, timer_num);
+
+
+        // document.addEventListener("mousedown", () => {
+        //     clearInterval(timer)
+        // });
+
+        // document.addEventListener("mouseup", () => {
+        //     timer = setInterval(() => {
+        //         i++
+        //         i == a.length ? i = 0 : ""
+        //         render(i)
+        //     }, timer_num);
+        // });
+
+
+        // function render(i) {
+        //     let r = abRandom(0, 255)
+        //     let g = abRandom(0, 255)
+        //     let b = abRandom(0, 255)
+        //     let fs = abRandom(20, 75)
+        //     document.body.style["display"] = `flex`
+        //     document.body.style["align-items"] = `center`
+        //     document.body.style["justify-content"] = `center`
+        //     // document.body.style["width"] = `100%`
+        //     document.body.style["height"] = `98vh`
+        //     document.body.style["font-size"] = `${fs}vh`
+        //     document.body.style["color"] = `rgb(${g},${b},${r})`
+        //     document.body.style.background = `rgb(${r},${g},${b})`
+        //     document.body.innerHTML = a[i]
+        // }
+
+
+        // // 1-255
+        // function abRandom(a = 0, b = 1) {
+        //     return Math.round(Math.random() * (b - a)) + a;
+        // }
+    </script>
+</body>
+
+</html>
